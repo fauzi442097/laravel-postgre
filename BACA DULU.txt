@@ -1,0 +1,2 @@
+Program ini merupakan program CRUD data pegawai
+sederhana dengan menggunakan db-postgre
