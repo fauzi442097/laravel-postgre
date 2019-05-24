@@ -38,8 +38,7 @@
                 <ul class="list-group">
                     <li class="list-group-item bg-secondary" style="cursor:pointer;"
                         onclick="return window.location.href='/mahasiswa'">&nbsp;&nbsp;Mahasiswa</li>
-                    <li class="list-group-item bg-secondary" style="cursor:pointer;">&nbsp;&nbsp;Dosen</li>
-                    <li class="list-group-item bg-secondary" style="cursor:pointer;">&nbsp;&nbsp;Ruang</li>
+
                 </ul>
             </div>
 
