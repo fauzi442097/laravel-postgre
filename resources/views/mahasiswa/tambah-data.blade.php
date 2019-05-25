@@ -1,6 +1,6 @@
 @extends('layout.master')
 
-@section('title', 'Mahasiswa')
+@section('title', 'Tambah')
 
 
 @section('content')
