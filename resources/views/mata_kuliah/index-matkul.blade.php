@@ -21,7 +21,7 @@
         </button>
     </div>
     @endif
-    <a class="btn btn-primary mb-2" href="/mata_kuliah/tambah">Tambah Data</a>
+    <a class="btn btn-primary mb-2" href="/matakuliah/tambah">Tambah Data</a>
     <table class="table table-hover table-responsive-lg">
         <thead>
             <tr>
