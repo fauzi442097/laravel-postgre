@@ -18,6 +18,8 @@
 //VIEW
 Route::get('/', 'IndexController@index');
 Route::get('/mahasiswa', 'MahasiswaController@index');
+Route::get('/matakuliah', 'MataKuliahController@index');
+
 Route::get('/mahasiswa/tambah', 'MahasiswaController@TambahData');
 Route::get('/mahasiswa/ubah/{nim}', 'MahasiswaController@UbahData');
 
