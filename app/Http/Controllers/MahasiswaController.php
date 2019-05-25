@@ -27,10 +27,8 @@ class MahasiswaController extends Controller
             'nim' => 'required|digits:8|unique:Mahasiswa',
             'nama' => 'required|max:50',
             'jurusan' => 'required'
-        ]);
+        ]);    
         
-        
-
 
         Mahasiswa::insert([
             'nim' => $request->input('nim'),
