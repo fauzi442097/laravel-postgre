@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Kelola Data - @yield('title')</title>
-    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
         integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 </head>
@@ -38,6 +38,8 @@
                 <ul class="list-group">
                     <li class="list-group-item bg-secondary" style="cursor:pointer;"
                         onclick="return window.location.href='/mahasiswa'">&nbsp;&nbsp;Mahasiswa</li>
+                    <li class="list-group-item bg-secondary" style="cursor:pointer;"
+                        onclick="return window.location.href='/matakuliah'">&nbsp;&nbsp;Mata Kuliah</li>
 
                 </ul>
             </div>
@@ -50,9 +52,9 @@
         </div>
     </div>
 
-    <script src="js/jquery-3.4.1.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="{{asset('js/jquery-3.4.1.js')}}"></script>
+    <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{asset('js/bootstrap.min.js')}}"></script>
 
 </body>
 
