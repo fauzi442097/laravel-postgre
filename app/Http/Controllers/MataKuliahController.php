@@ -50,26 +50,27 @@ class MataKuliahController extends Controller
         return redirect('/matakuliah')->with('status', 'Disimpan');
     }
 
-    public function UbahData(Request $request, $nim)
+    public function UbahData(Request $request, $kode_mk, Mata_Kuliah $matkul)
     {
         if ($request->method() == "GET") {
-            $mhs = Mahasiswa::where('nim',$nim)->first();
-            return view('mahasiswa.ubah-data', compact('mhs'));
+            $data = $matkul->where('kode_mk', $kode_mk)->first();
+            return view('mata_kuliah.ubah-data', compact('data'));
         }
         
-        Mahasiswa::where('nim', $nim)->update([
-            'nama' => $request->input('nama'),
-            'jurusan' => $request->input('jurusan'),
-            'alamat' => $request->input('alamat')
+        //Validate data cari 1
+        $request->validate([
+            'nama_mk' => 'required|max:50',
+            'semester' => 'required|integer|max:2',
+            'jml_sks' => 'required|integer'
+        ]); 
+
+        $matkul->where('kode_mk', $kode_mk)->update([
+            'nama_mk' => $request->input('nama_mk'),
+            'semester' => $request->input('semester'),
+            'jml_sks' => $request->input('jml_sks')
         ]);
 
-        // DB::table('Mahasiswa')->where('nim',$nim)->update([
-        //     'nama' => $request->input('nama'),
-        //     'jurusan' => $request->input('jurusan'),
-        //     'alamat' => $request->input('alamat')
-        // ]);
-        
-        return redirect('/')->with('status', 'Diperbaharui');
+        return redirect('/matakuliah')->with('status', 'Diperbaharui');
     }
 
 }

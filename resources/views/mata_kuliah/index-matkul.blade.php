@@ -25,24 +25,24 @@
     <table class="table table-hover table-responsive-lg">
         <thead>
             <tr>
-                <th scope="col">NO</th>
-                <th scope="col">Kode MK</th>
-                <th scope="col">Nama</th>
-                <th scope="col">Semester</th>
-                <th scope="col">Jml SKS</th>
+                <th scope="col" class="text-center">NO</th>
+                <th scope="col" class="text-center">Kode MK</th>
+                <th scope="col" class="text-center">Nama</th>
+                <th scope="col" class="text-center">Semester</th>
+                <th scope="col" class="text-center">Jml SKS</th>
                 <th scope="col" class="text-center">Aksi</th>
             </tr>
         </thead>
         <tbody>
             @forelse ($data as $index => $mk)
             <tr>
-                <td>{{++$index}}</td>
-                <td>{{$mk->kode_mk}}</td>
+                <td class="text-center">{{++$index}}</td>
+                <td class="text-center">{{$mk->kode_mk}}</td>
                 <td>{{$mk->nama_mk}}</td>
-                <td>{{$mk->semester}}</td>
-                <td>{{$mk->jml_sks}}</td>
+                <td class="text-center">{{$mk->semester}}</td>
+                <td class="text-center">{{$mk->jml_sks}}</td>
                 <td class="text-center">
-                    <a href="/mata_kuliah/ubah/{{$mk->kode_mk}}" class="btn btn-primary mr-3" title="Edit">
+                    <a href="/matakuliah/ubah/{{$mk->kode_mk}}" class="btn btn-primary mr-3" title="Edit">
                         <span class="fas fa-pen"></span>
                     </a>
                     {{-- <a href="/mata_kuliah/hapus/{{$mk->kode_mk}}" class="btn btn-danger" title="Hapus"
