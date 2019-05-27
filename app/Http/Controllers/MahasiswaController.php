@@ -10,9 +10,16 @@ use Illuminate\Support\Facades\DB;
 
 class MahasiswaController extends Controller
 {
-    public static function index()
+    protected $mahasiswa;
+
+    public function __construct(Mahasiswa $mhs)
     {
-        $mhs = Mahasiswa::all();
+        $this->mahasiswa = $mhs;
+    }
+
+    public function index()
+    {
+        $mhs = $this->mahasiswa->all();
         return view('mahasiswa.index-mhs', compact('mhs'));
     }
 
@@ -30,7 +37,7 @@ class MahasiswaController extends Controller
         ]);    
         
 
-        Mahasiswa::insert([
+        $this->mahasiswa->insert([
             'nim' => $request->input('nim'),
             'nama' => $request->input('nama'),
             'jurusan' => $request->input('jurusan'),
@@ -38,35 +45,29 @@ class MahasiswaController extends Controller
         ]);
         
         
-        return redirect('/')->with('status', 'Disimpan');
+        return redirect('/mahasiswa')->with('status', 'Disimpan');
     }
 
     public function UbahData(Request $request, $nim)
     {
         if ($request->method() == "GET") {
-            $mhs = Mahasiswa::where('nim',$nim)->first();
+            $mhs = $this->mahasiswa->where('nim',$nim)->first();
             return view('mahasiswa.ubah-data', compact('mhs'));
         }
         
-        Mahasiswa::where('nim', $nim)->update([
+        $this->mahasiswa->where('nim', $nim)->update([
             'nama' => $request->input('nama'),
             'jurusan' => $request->input('jurusan'),
             'alamat' => $request->input('alamat')
         ]);
-
-        // DB::table('Mahasiswa')->where('nim',$nim)->update([
-        //     'nama' => $request->input('nama'),
-        //     'jurusan' => $request->input('jurusan'),
-        //     'alamat' => $request->input('alamat')
-        // ]);
         
-        return redirect('/')->with('status', 'Diperbaharui');
+        return redirect('/mahasiswa')->with('status', 'Diperbaharui');
     }
 
     public function DeleteData($nim)
     {        
-        Mahasiswa::where('nim', $nim)->delete();
-        return redirect('/')->with('status', 'Dihapus');
+        $this->mahasiswa->where('nim', $nim)->delete();
+        return redirect('/mahasiswa')->with('status', 'Dihapus');
     }
     
 

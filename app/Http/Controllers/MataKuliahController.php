@@ -8,18 +8,24 @@ use App\Mata_Kuliah;
 
 class MataKuliahController extends Controller
 {
-    
-    public function index(Mata_Kuliah $matkul)
+    protected $matkul;
+
+    public function __construct(Mata_Kuliah $matkul)
     {
-        $data = $matkul->all();
+        $this->matkul = $matkul;
+    }
+
+    public function index()
+    {
+        $data = $this->matkul->all();
         return view('mata_kuliah.index-matkul', compact("data"));
     }
 
-    public function TambahData(Request $request, Mata_Kuliah $matkul)
+    public function TambahData(Request $request)
     {
             
         if ($request->method() == "GET") {
-            $pk = $matkul->select('kode_mk')->orderBy('kode_mk', 'desc')->first();
+            $pk = $this->matkul->select('kode_mk')->orderBy('kode_mk', 'desc')->first();
             $kode = (int)substr($pk->kode_mk,2) + 1;
             $no_kode = strlen($kode);
             switch (strlen($no_kode)) {
@@ -33,13 +39,13 @@ class MataKuliahController extends Controller
         //Validate data cari 1
         $request->validate([
             'nama_mk' => 'required|max:50',
-            'semester' => 'required|integer|max:2',
+            'semester' => 'required|integer',
             'jml_sks' => 'required|integer'
         ]);    
         
         
 
-        $matkul->insert([
+        $this->matkul->insert([
             'kode_mk' => $request->input('kode_mk'),
             'nama_mk' => $request->input('nama_mk'),
             'semester' => $request->input('semester'),
@@ -50,10 +56,10 @@ class MataKuliahController extends Controller
         return redirect('/matakuliah')->with('status', 'Disimpan');
     }
 
-    public function UbahData(Request $request, $kode_mk, Mata_Kuliah $matkul)
+    public function UbahData(Request $request, $kode_mk)
     {
         if ($request->method() == "GET") {
-            $data = $matkul->where('kode_mk', $kode_mk)->first();
+            $data = $this->matkul->where('kode_mk', $kode_mk)->first();
             return view('mata_kuliah.ubah-data', compact('data'));
         }
         
@@ -64,7 +70,7 @@ class MataKuliahController extends Controller
             'jml_sks' => 'required|integer'
         ]); 
 
-        $matkul->where('kode_mk', $kode_mk)->update([
+        $this->matkul->where('kode_mk', $kode_mk)->update([
             'nama_mk' => $request->input('nama_mk'),
             'semester' => $request->input('semester'),
             'jml_sks' => $request->input('jml_sks')

@@ -21,6 +21,7 @@ Route::get('/', 'IndexController@index');
 //Mahasiswa
 Route::get('/mahasiswa', 'MahasiswaController@index');
 Route::get('/mahasiswa/tambah', 'MahasiswaController@TambahData');
+Route::get('/mahasiswa/ubah/{id}', 'MahasiswaController@UbahData');
 
 
 //MataKuliah
